@@ -40,7 +40,7 @@ body{
     border-bottom: 1px solid #f5f5f5;
     position:relative;
     overflow:hidden;
-    height:21px;
+    height:20px;
     
     transition: opacity 0.3s linear, height 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
@@ -55,7 +55,7 @@ body{
 }
 
 .c-listitem--box-shadow{
-    transition:box-shadow 0.5s ease-in-out, color 0.2s linear, background-color 0.2s linear;
+    transition:box-shadow 0.5s ease-in-out, color 0.5s linear, background-color 0.5s linear;
 }
 
 .c-listitem--box-shadow:hover{
@@ -69,11 +69,64 @@ body{
     border-bottom: 1px solid #ececec;
 }
 
+.c-listitem__label{
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-left:25px;
+    font-size:13px;
+}
+
+.c-listitem__input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.c-listitem__checkbox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: #c7c7c7;
+    transition:all 0.5s linear;
+}
+
+.c-listitem__checkbox:after{
+    content: "";
+    position: absolute;
+    display: none;
+
+    left: 6px;
+    top: 2px;
+    width: 3px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.c-listitem__input:checked ~ .c-listitem__checkbox{
+    background-color: #3a76f7;
+}
+
+.c-listitem__input:checked ~ .c-listitem__checkbox:after{
+    display:block;
+    
+}
+
 .c-tasklist__delete{
     float: right;
     background-color: rgba(0,0,0,0);
     border: none;
-    margin-top: 3px;
+    margin-top: 2px;
     color: #ffaaaa;
 }
 
@@ -150,7 +203,7 @@ body{
     }
     to {
         opacity: 1;
-        height: 21px;
+        height: 20px;
         padding:10px;
     }
 }@keyframes fade {
@@ -161,7 +214,7 @@ body{
     }
     to {
         opacity: 1;
-        height: 21px;
+        height: 20px;
         padding:10px;
     }
 }

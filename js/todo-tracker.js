@@ -27,13 +27,14 @@ function addItem(taskValue, isComplete, save){
             listItem.classList.add("c-listitem--box-shadow");
         
         var labelCheckbox = document.createElement("label");
-            labelCheckbox.classList.add("c-tasklist__label");
+            labelCheckbox.classList.add("c-listitem__label");
         
         var completeCheckbox = document.createElement("input");
-            completeCheckbox.classList.add("c-tasklist__checkbox");
+            completeCheckbox.classList.add("c-listitem__input");
             completeCheckbox.type = "checkbox";
         
         var spanCheckbox = document.createElement("span");
+            spanCheckbox.classList.add("c-listitem__checkbox");
 
         var deleteButton = document.createElement("button");
             deleteButton.appendChild(document.createTextNode("Delete"));
@@ -41,10 +42,11 @@ function addItem(taskValue, isComplete, save){
 
         
         listItem.appendChild(labelCheckbox);
+            labelCheckbox.appendChild(document.createTextNode(taskValue));
             labelCheckbox.appendChild(completeCheckbox);
             labelCheckbox.appendChild(spanCheckbox);
 
-        listItem.appendChild(document.createTextNode(taskValue));
+        
         listItem.appendChild(deleteButton);
 
         taskList.appendChild(listItem);
