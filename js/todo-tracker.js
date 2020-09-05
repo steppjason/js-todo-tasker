@@ -5,8 +5,6 @@ const taskListButton = document.getElementById("tasklist-button");
 const taskListError = document.getElementById("tasklist-error");
 const taskListContent = document.getElementById("tasklist-content");
 
-const errorNone = "Please enter a task name";
-
 var tasks = [];
 
 // Add event listeners to add a new task
@@ -16,6 +14,7 @@ taskListButton.addEventListener("click", addItemOnClick);
 let localTodoList = window.localStorage.jsToDoList;
 
 loadLocalStorage();
+taskListInput.focus();
 
 // Add a new item to the list
 function addItem(taskValue, isComplete, save){
@@ -62,6 +61,7 @@ function addItem(taskValue, isComplete, save){
         deleteButton.addEventListener("click", hide);
 
         function hide(){
+            toggleError(false);
             listItem.classList.remove("fade");
             listItem.classList.remove("c-listitem--box-shadow");
             listItem.classList.add("c-tasklist__listitem--is-hidden");
@@ -81,6 +81,7 @@ function addItem(taskValue, isComplete, save){
             listItem.removeEventListener("transitionend", removeItem);
             taskList.removeChild(listItem);
             saveLocalStorage();
+            taskListInput.focus();
         }
 
         // Marks an item as complete
@@ -97,9 +98,12 @@ function addItem(taskValue, isComplete, save){
 
         checkEmpty();
 
+        taskListInput.value = "";
+        taskListInput.focus();
+
     } else if (save){
         toggleError(true);
-        taskListError.innerHTML = errorNone;
+        taskListInput.focus();
     }
 }
 
