@@ -23,26 +23,33 @@ function addItem(taskValue, isComplete, save){
         toggleError(false);
 
         var listItem = document.createElement("li");
-        var completeCheckbox = document.createElement("input");
-        var spanCheckbox = document.createElement("span");
-        var deleteButton = document.createElement("button");
-
-        listItem.classList.add("c-tasklist__listitem");
-        listItem.classList.add("c-listitem--box-shadow");
-
-        completeCheckbox.type = "checkbox";
-        deleteButton.appendChild(document.createTextNode("Delete"));
-
-        deleteButton.classList.add("c-tasklist__delete");
-        completeCheckbox.classList.add("c-tasklist__checkbox");
+            listItem.classList.add("c-tasklist__listitem");
+            listItem.classList.add("c-listitem--box-shadow");
         
+        var labelCheckbox = document.createElement("label");
+            labelCheckbox.classList.add("c-tasklist__label");
+        
+        var completeCheckbox = document.createElement("input");
+            completeCheckbox.classList.add("c-tasklist__checkbox");
+            completeCheckbox.type = "checkbox";
+        
+        var spanCheckbox = document.createElement("span");
 
-        listItem.appendChild(completeCheckbox);
-        listItem.appendChild(spanCheckbox);
+        var deleteButton = document.createElement("button");
+            deleteButton.appendChild(document.createTextNode("Delete"));
+            deleteButton.classList.add("c-tasklist__delete");
+
+        
+        listItem.appendChild(labelCheckbox);
+            labelCheckbox.appendChild(completeCheckbox);
+            labelCheckbox.appendChild(spanCheckbox);
+
         listItem.appendChild(document.createTextNode(taskValue));
         listItem.appendChild(deleteButton);
 
         taskList.appendChild(listItem);
+
+        listItem.classList.add("fade");
 
         if(isComplete){
             listItem.classList.add("listitem--is-complete")
@@ -53,6 +60,7 @@ function addItem(taskValue, isComplete, save){
         deleteButton.addEventListener("click", hide);
 
         function hide(){
+            listItem.classList.remove("fade");
             listItem.classList.remove("c-listitem--box-shadow");
             listItem.classList.add("c-tasklist__listitem--is-hidden");
             listItem.addEventListener("transitionend", hideHeight);

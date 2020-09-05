@@ -131,3 +131,37 @@ body{
 .error-message--is-active{
     display: block;
 }
+
+
+/* Fade-in animation */
+/* - sloppy solution to fading in new tasks when the user creates one */
+
+.fade {
+    -webkit-animation: fade 0.5s;
+    animation: fade 0.5s;
+    opacity: 1;
+ }
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 0;
+        height:1px;
+        padding:0;
+    }
+    to {
+        opacity: 1;
+        height: 21px;
+        padding:10px;
+    }
+}@keyframes fade {
+    from {
+        opacity: 0;
+        height:1px;
+        padding:0;
+    }
+    to {
+        opacity: 1;
+        height: 21px;
+        padding:10px;
+    }
+}
