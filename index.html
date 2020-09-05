@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS To-Do Tracker</title>
+    <link rel="stylesheet" href="./css/main.min.css">
+    
+</head>
+<body onload="loadLocalStorage()">
+    <section class="c-tasklist">
+        <h1 class="c-tasklist__header">Tasks</h1>
+        <div class="c-tasklist__content">
+            <ul id="tasklist-list" class="c-tasklist__list">
+            </ul>
+            <input id="tasklist-input" class="c-tasklist__input" type="text" placeholder="Add a new task...">
+            <button id="tasklist-button" class="c-button">></button>
+            <div id="tasklist-error" class="c-tasklist__error-message error-message--is-hidden"></div>
+        </div>
+    </section>
+    <script type="text/javascript" src="./js/todo-tracker.min.js"></script>
+</body>
+</html>
