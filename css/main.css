@@ -55,7 +55,7 @@ body{
 }
 
 .c-listitem--box-shadow{
-    transition:box-shadow 0.5s ease-in-out, color 0.5s linear, background-color 0.5s linear;
+    transition:box-shadow 0.5s ease-in-out, color 0.3s linear, background-color 0.3s linear;
 }
 
 .c-listitem--box-shadow:hover{
@@ -80,6 +80,10 @@ body{
     font-size:13px;
 }
 
+.c-listitem__label:hover .c-listitem__input ~ .c-listitem__checkbox{
+    background-color:#e4e4e4;
+}
+
 .c-listitem__input{
     position: absolute;
     opacity: 0;
@@ -95,7 +99,7 @@ body{
     height: 17px;
     width: 17px;
     background-color: #c7c7c7;
-    transition:all 0.5s linear;
+    transition:all 0.3s linear;
 }
 
 .c-listitem__checkbox:after{
@@ -113,7 +117,7 @@ body{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-.c-listitem__input:checked ~ .c-listitem__checkbox{
+.c-listitem__label .c-listitem__input:checked ~ .c-listitem__checkbox{
     background-color: #3a76f7;
 }
 
