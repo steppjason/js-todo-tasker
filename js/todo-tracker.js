@@ -132,14 +132,16 @@ function toggleError(active){
 }
 
 function saveLocalStorage(){
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+    window.localStorage.setItem("js_tasks", JSON.stringify(tasks));
 }
 
 function loadLocalStorage(){
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-    tasks.forEach(function(task){
-        addItem(task[0],task[1], false);
-    });
+    if(localStorage.getItem("js_tasks") !== null){
+        tasks = JSON.parse(localStorage.getItem("js_tasks"));
+        tasks.forEach(function(task){
+            addItem(task[0],task[1], false);
+        });
+    }
 }
 
 function checkEmpty(){
