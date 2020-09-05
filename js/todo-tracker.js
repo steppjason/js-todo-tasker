@@ -1,4 +1,3 @@
-
 // Get HTML elements we are working with
 const taskList = document.getElementById("tasklist-list");
 const taskListInput = document.getElementById("tasklist-input");
@@ -25,38 +24,43 @@ function addItem(taskValue, isComplete, save){
 
         var listItem = document.createElement("li");
         var completeCheckbox = document.createElement("input");
+        var spanCheckbox = document.createElement("span");
         var deleteButton = document.createElement("button");
 
         listItem.classList.add("c-tasklist__listitem");
+        listItem.classList.add("c-listitem--box-shadow");
 
         completeCheckbox.type = "checkbox";
         deleteButton.appendChild(document.createTextNode("Delete"));
 
         deleteButton.classList.add("c-tasklist__delete");
         completeCheckbox.classList.add("c-tasklist__checkbox");
+        
 
         listItem.appendChild(completeCheckbox);
+        listItem.appendChild(spanCheckbox);
         listItem.appendChild(document.createTextNode(taskValue));
         listItem.appendChild(deleteButton);
 
         taskList.appendChild(listItem);
 
         if(isComplete){
-            listItem.classList.toggle("listitem--is-complete")
+            listItem.classList.add("listitem--is-complete")
             completeCheckbox.checked = true;
         }
-    
+        
         completeCheckbox.addEventListener("click", completeItem);
         deleteButton.addEventListener("click", hide);
 
         function hide(){
-            listItem.classList.add("hidden");
+            listItem.classList.remove("c-listitem--box-shadow");
+            listItem.classList.add("c-tasklist__listitem--is-hidden");
             listItem.addEventListener("transitionend", hideHeight);
         }
 
         function hideHeight(){
             listItem.removeEventListener("transitionend", hideHeight);
-            listItem.classList.add("hidden-height");
+            listItem.classList.add("c-tasklist__listitem--is-height-hidden");
             listItem.addEventListener("transitionend", removeItem);
             tasks.splice(Array.from(listItem.parentNode.children).indexOf(listItem),1);
             checkEmpty();
