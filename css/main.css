@@ -12,6 +12,23 @@ body{
     padding: 25px;
 }
 
+.c-tasklist__header{
+    float:left;
+    margin-top:4px;
+
+}
+
+.c-tasklist__content{
+    clear:both;
+    box-shadow: 2px 2px 6px 2px #f5f5f5;
+    transition: opacity 1s ease-in-out;
+}
+
+.c-tasklist__content--hidden{
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
 .c-tasklist__list{
     list-style: none;
     margin: 0;
@@ -19,12 +36,65 @@ body{
 }
 
 .c-tasklist__listitem{
-    padding: 5px;
+    padding: 10px;
+    border-bottom: 1px solid #f5f5f5;
+    transition: box-shadow 0.25s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.c-tasklist__listitem:hover{
+    box-shadow: 0px 2px 4px 0px #bfbfbf;
+}
+
+.c-tasklist__delete{
+    float: right;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    margin-top: 3px;
+    color: #ffaaaa;
+}
+
+.c-tasklist__delete:hover{
+    cursor: pointer;
+}
+
+
+.c-tasklist__checkbox{
+    margin-right:15px;
 }
 
 .c-tasklist__input{
     padding: 10px;
-    width:100%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+    border: 1px solid #f5f5f5;
+    float: left;
+    transition:all 0.2s ease-in-out;
+}
+
+.c-tasklist__input:focus{
+    outline:none;
+    border-bottom:3px solid #76b3ff;
+    margin-bottom: 13px;
+}
+
+.c-button{
+    border: 0;
+    color: #76b3ff;
+    background-color: rgba(0,0,0,0);
+    font-size: 40px;
+    margin-top: -5px;
+    float: left;
+    transition:color 0.5s ease-in-out;
+}
+
+.c-button:hover{
+    cursor: pointer;
+    color: #c4e1ff;
+}
+
+.c-button:focus{
+    outline: none;
 }
 
 .c-tasklist__error-message{
@@ -45,10 +115,21 @@ body{
 }
 
 .c-tasklist__listitem{
-    /* transition: all 0.5s linear; */
+    overflow:hidden;
+    height:21px;
+    transition: opacity 0.25s linear, height 0.75s ease-in-out 0.25s, padding 0.75s ease-in-out 0.25s;
 }
 
 .listitem--is-complete{
     text-decoration: line-through;
     color: darkgray;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.hidden-height{
+    height:1px;
+    padding:0;
 }

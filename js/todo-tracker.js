@@ -4,6 +4,7 @@ const taskList = document.getElementById("tasklist-list");
 const taskListInput = document.getElementById("tasklist-input");
 const taskListButton = document.getElementById("tasklist-button");
 const taskListError = document.getElementById("tasklist-error");
+const taskListContent = document.getElementById("tasklist-content");
 
 const errorNone = "Please enter a task name";
 
@@ -29,7 +30,10 @@ function addItem(taskValue, isComplete, save){
         listItem.classList.add("c-tasklist__listitem");
 
         completeCheckbox.type = "checkbox";
-        deleteButton.appendChild(document.createTextNode("X"));
+        deleteButton.appendChild(document.createTextNode("Delete"));
+
+        deleteButton.classList.add("c-tasklist__delete");
+        completeCheckbox.classList.add("c-tasklist__checkbox");
 
         listItem.appendChild(completeCheckbox);
         listItem.appendChild(document.createTextNode(taskValue));
@@ -43,11 +47,24 @@ function addItem(taskValue, isComplete, save){
         }
     
         completeCheckbox.addEventListener("click", completeItem);
-        deleteButton.addEventListener("click", removeItem);
+        deleteButton.addEventListener("click", hide);
+
+        function hide(){
+            listItem.classList.add("hidden");
+            listItem.addEventListener("transitionend", hideHeight);
+        }
+
+        function hideHeight(){
+            listItem.removeEventListener("transitionend", hideHeight);
+            listItem.classList.add("hidden-height");
+            listItem.addEventListener("transitionend", removeItem);
+            tasks.splice(Array.from(listItem.parentNode.children).indexOf(listItem),1);
+            checkEmpty();
+        }
 
         // Remove an item from the list
         function removeItem(){
-            tasks.splice(Array.from(listItem.parentNode.children).indexOf(listItem),1);
+            listItem.removeEventListener("transitionend", removeItem);
             taskList.removeChild(listItem);
             saveLocalStorage();
         }
@@ -63,6 +80,8 @@ function addItem(taskValue, isComplete, save){
             tasks.push([taskValue, isComplete]);
             saveLocalStorage();
         }
+
+        checkEmpty();
 
     } else if (save){
         toggleError(true);
@@ -101,9 +120,16 @@ function saveLocalStorage(){
 function loadLocalStorage(){
     tasks = JSON.parse(localStorage.getItem("tasks"));
     tasks.forEach(function(task){
-        console.log(task[0] + ", " + task[1]);
         addItem(task[0],task[1], false);
     });
+}
+
+function checkEmpty(){
+    if(tasks.length > 0){
+        taskListContent.classList.remove("c-tasklist__content--hidden");
+    } else {
+        taskListContent.classList.add("c-tasklist__content--hidden");
+    }
 }
 
 function getInputLength(){
