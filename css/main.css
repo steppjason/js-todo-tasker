@@ -9,8 +9,15 @@ body{
     font-size:13px;
 }
 
+[data-icon]:before {
+    font-family: icons;
+    content: attr(data-icon);
+    speak: none;
+}
+
 .c-tasklist{
     padding: 25px;
+    width:400px;
 }
 
 .c-tasklist__header{
@@ -79,6 +86,7 @@ body{
     user-select: none;
     padding-left:25px;
     font-size:13px;
+    top:2px;
 }
 
 .c-listitem__label:hover .c-listitem__input ~ .c-listitem__checkbox{
@@ -95,7 +103,7 @@ body{
 
 .c-listitem__checkbox{
     position: absolute;
-    top: 0;
+    top: -1px;
     left: 0;
     height: 17px;
     width: 17px;
